@@ -4,6 +4,7 @@ import Previewer from './components/Previewer'
 
 function App() {
   const [form, setForm] = useState(`
+  # [Repo for this project](https://github.com/ikbakk/markdown-previewer)
   # heading \n 
   ## heading2 \n
   ![This is image](https://google.com) \n
