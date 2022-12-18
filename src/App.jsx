@@ -1,32 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Editor from './components/Editor'
+import Previewer from './components/Previewer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [form, setForm] = useState(`
+  # heading \n 
+  ## heading2 \n
+  ![This is image](https://google.com) \n
+  [This is Link](https://google.com) \n
+  \`<div>Inline Code\` \n
+  \`\`\`
+  const thisIsCode = (params) => {
+    return params + 1
+  } 
+  \`\`\` \n
+  **Bold Text**\n
 
+  >BLockquote \n
+
+  1. List1
+  2. List2
+  `)
+  const handleChange = (e) => {
+    setForm(e.target.value)
+  }
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='p-10'>
+      <div className='mockup-window border bg-base-300'>
+        <Editor form={form} handleChange={handleChange} />
+        <div className='flex justify-start px-10 py-16 bg-base-200'>
+          <Previewer form={form} />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
